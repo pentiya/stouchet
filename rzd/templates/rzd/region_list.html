@@ -1,0 +1,19 @@
+{% extends "web/base.html" %}
+
+{% block title %}Регионы{% endblock %}
+
+{% block content %}
+  <div class="features">
+    <h1> РЖД Регионы</h1>
+    {% if object_list %}
+      {% for region in object_list %}
+        <div class="alert alert-warning">
+          <a href="{% url 'region-view' region.id %}">{{ region.name }} ({{ region.doroga.short_name }})</a>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Нет записей</p>
+    {% endif %}
+    <a href="{% url 'region-add' %}"><button class="btn btn-info">Добавить регион</button></a>
+  </div>
+{% endblock %}

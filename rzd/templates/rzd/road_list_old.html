@@ -1,0 +1,23 @@
+{% extends "web/base.html" %}
+
+{% block title %}РЖД - Дороги{% endblock %}
+
+{% block content %}
+  <div class="features">
+    <h1> РЖД Дороги</h1>
+    {% if roads %}
+      {% for road in roads %}
+        <div class="alert alert-warning">
+          <h3>{{ road }}</h3>
+          <!--h3><a href="{% url 'road_view' road_id %}">{{ road }} ({{road.kod}})</a>{{ road }}</h3-->
+          <p>{{ road.name }} {{ road.short_name }} {{ road.kod }}</p>
+          {# <a href="{% url 'road_view' road.id %}"><button class="btn btn-info">Подробнее</button></a> #}
+          <!--a href="{% url 'station' %}">{{ road }} ({{road.kod}})</a-->
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Нет записей</p>
+    {% endif %}
+    <a href="{% url 'road_add' %}"><button class="btn btn-info">Добавить дорогу</button></a>
+  </div>
+{% endblock %}

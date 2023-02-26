@@ -1,0 +1,28 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Про100учет - Простой учет для отдела СТО">
+<title>{% block title %}Главная{% endblock %} - Про100учет</title>
+{% block head %}{% endblock %}
+{# Load CSS and JavaScript #}
+{#% bootstrap_css %#}
+<link rel="stylesheet" {% static bootstrap_css_url %}>
+<link rel="stylesheet" {% static bootstrap_css %}>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'web/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'web/css/nav.css' %}">
+<!--disabled in debug link rel="stylesheet" href="{% static 'style.css' %}"-->
+{% bootstrap_javascript %}
+</head>
+<body>
+{% include "web/nav.html" %}
+{% bootstrap_messages %}
+<div id="content">
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>

@@ -47,14 +47,18 @@ INSTALLED_APPS = [
 
 #packages
 INSTALLED_APPS += [
+    'django_bootstrap5',
     'rest_framework',
     'django_filters',
+    'django_tables2',
     'corsheaders',
 ]
 
 #apps
 INSTALLED_APPS += [
     'api',
+    'web',
+    'rzd',
     'device',
 ]
 
@@ -147,3 +151,42 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #CORS_ALLOW_CREDENTIALS = True
 #CORS_ALLOW_HEADERS = ['*']
 #CSRF_COOKIE_SECURE = False
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+#    'DEFAULT_PERMISSION_CLASSES': [
+#        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#    ],
+#    доступ к апи только аутентифицированным
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.isAuthentificated'
+    ],
+#   использовать базовую аутентификацию
+    'DEFAULT_AUTHENTIFICATION_CLASSES': [
+        'rest_framework.permissions.BasicAuthentification'
+    ],
+#   ??? проверить
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultyPartParser',
+        'rest_framework.parsers.FileUpLoadParser',
+    ],
+#   документация
+#    'DEFAULT_SHEMA_CLASS': 'drf.spectacular.openapi.AutoShema'
+
+}
+
+# Bootstrap local use
+BOOTSTRAP5 = {
+
+    "css_url": {
+        "href": "/static/css/bootstrap.min.css",
+    },
+
+    "javascript_url": {
+        "url": "/static/js/bootstrap.bundle.min.js",
+    },
+
+}

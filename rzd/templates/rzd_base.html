@@ -1,0 +1,60 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=l, shrink-to-fit=no">
+<title>{% block title %}РЖД Главная{% endblock %}Pro100uchet</title>
+<!--link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"-->
+<style type="text/css">
+header h1 {
+font-size: 40pt;
+text-transform: uppercase;
+text-align: center;
+background: url("bg.jpg") left / auto 100% no-repeat;
+}
+nav {
+font-size: 12pt;
+width: 15Opx;
+float: left;
+}
+nav a {
+display: block;
+margin: 10px 0px;
+}
+section {
+margin-left: 170px;
+}
+
+</style>
+</head>
+<body>
+
+<body class="container-fluid">
+<header class="mb-4">
+<h1 class="display-1 tех1-сеп1ег">РЖД Справочники</h1>
+</header>
+
+
+
+<nav>
+<a href="{% url 'rzd_index' %}">Главная</a>
+
+<a href="{% url 'doroga_list' %}">Дороги</a>
+<a href="{% url 'region_list' %}">Регионы</a>
+<a href="{% url 'station_list' %}">Станции</a>
+
+<a href="{% url 'region_listview' %}">Регионы(list.view)</a>
+<a href="{% url 'station_listview' %}">Станции(list.view)</a>
+
+<a href="{% url 'region_tableview' %}">Регионы(table.view)</a>
+<a href="{% url 'station_tableview' %}">Станции(table.view)</a>
+
+</nav>
+<section>
+{% block content %}
+{% endblock %}
+</section>
+</body>
+</html>
