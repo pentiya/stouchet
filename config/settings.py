@@ -182,7 +182,7 @@ REST_FRAMEWORK = {
 BOOTSTRAP5 = {
 
     "css_url": {
-        "href": "/static/css/bootstrap.min.css",
+        "url": "/static/css/bootstrap.min.css",
     },
 
     "javascript_url": {
