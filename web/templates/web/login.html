@@ -1,0 +1,19 @@
+{% extends "web/base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<p>Вы уже выполнили вход.</p>
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    {#% bootstrap_form form layout=’horizontal’ %#}
+    {% bootstrap_form form %}
+    {% bootstrap_button "Войти" button_type="submit" button_class="btn-primary" %}
+    {% bootstrap_button "Отмена" button_type="reset" button_class="btn-primary" %}
+    <input type="hidden" name="next" value="/">
+    <p class="text-center">Forgot your password <a href="#">Reset Password</a></p>
+		<p class="text-center">Don't have a account? <a href="#">Join Now</a></p>
+</form>
+{% endif %}
+{% endblock %}

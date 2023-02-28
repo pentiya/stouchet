@@ -23,8 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #root = environ.Path(__file__) - 2
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
+environ.Env.read_env(os.path.join(BASE_DIR, './.env'))
 DEBUG = env('DEBUG', default=False)
 SECRET_KEY = env('SECRET_KEY')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
@@ -186,7 +185,7 @@ BOOTSTRAP5 = {
     },
 
     "javascript_url": {
-        "url": "/static/js/bootstrap.bundle.min.js",
+        "url": "/static/js/bootstrap.min.js",
     },
 
 }
