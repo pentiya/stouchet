@@ -189,3 +189,5 @@ BOOTSTRAP5 = {
     },
 
 }
+LOGIN_REDIRECT_URL = 'web:index'
+LOGOUT_REDIRECT_URL = 'index'
