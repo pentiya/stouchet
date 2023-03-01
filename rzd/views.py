@@ -41,9 +41,9 @@ def road_list(request):
 class RoadListViewDef(ListView):
     model = Road
     # template_name = 'rzd/road_list.html' #default: <app-name>rzd/<model-name>_list.html = rzd/goroga_list.html
-    template_name = 'rzd/def_list.html'
+    template_name = 'rzd/def_listview.html'
     # context_object_name = 'roads' #название ключа, по которому запись передается внутрь шаблона, default: object_list
-    extra_context = {'title': 'Дороги - deflist', 'url_add': 'road/add'}
+    extra_context = {'title': 'Дороги', 'url_add': '/rzd/road/add', 'url_add_name': 'Добавить дорогу', 'url_edit': '/rzd/road/edit', 'url_edit_name': 'Редактировать дорогу'}
     queryset = Road.objects.all().order_by('kod')
 
 
