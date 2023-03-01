@@ -3,7 +3,6 @@
 {% block title %}{{title}}{% endblock %}
 
 {% block content %}
-  <div class="features">
     <h1>{{title}}</h1>
     {% if roads %}
       {% for road in roads %}
@@ -15,5 +14,5 @@
       <p>Нет записей</p>
     {% endif %}
     <a href="{% url 'road_add' %}"><button class="btn btn-info">Добавить дорогу</button></a>
-  </div>
-{% endblock %}
+  {% endblock %}
+

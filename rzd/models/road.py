@@ -9,8 +9,8 @@ class Road(models.Model):
     short_name = models.CharField('Краткое имя дороги)', max_length=10, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='created_by_user')
-    updated_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='updated_by_user')
+#    created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='created_by_user')
+#    updated_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='updated_by_user')
     def __str__(self):
         return self.name
 

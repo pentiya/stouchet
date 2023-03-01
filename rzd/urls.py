@@ -6,8 +6,9 @@ urlpatterns = [
 #    path('', views.region_list, name='region_list'),
     path('map/', views.rzd_map, name='rzd-map'),
 
-#    path('road/', views.road_list, name='road'),
-    path('road/', views.RoadListView.as_view(), name='road'),
+    path('road/', views.road_list, name='road'),
+    path('road/view/', views.RoadListView.as_view(), name='road_view'),
+    path('road/view_def/', views.RoadListViewDef.as_view(), name='road_view_def'),
     path('road/add/', views.road_add, name='road_add'),
     path('road/<int:pk>', views.RoadDetailView.as_view(), name='road_view'),
     path('road/<int:pk>/update', views.RoadUpdateView.as_view(), name='road_update'),
@@ -15,6 +16,7 @@ urlpatterns = [
 
 #    path('region/', views.region_list, name='region'),
     path('region/', views.RegionListView.as_view(), name='region'),
+    path('region/', views.RegionListView.as_view(), name='region-view'),
     path('region/add/', views.region_add, name='region-add' ),
 #    path('region/<int:pk>', views.RegionDetailView.as_view(), name='region-view'),
     path('region/<int:pk>/update', views.RegionUpdateView.as_view(), name='region-update'),
