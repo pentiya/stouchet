@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
-# DetailView для отображения динамической страницы
 from django.views.generic.edit import CreateView
 
 # Create your views here.
@@ -15,6 +14,7 @@ from .models import Station
 from .forms import RoadForm
 from .forms import RegionForm
 from .forms import StationForm
+from .tables import RoadTable
 
 
 # from .tables import RegionTable
@@ -36,31 +36,6 @@ def road_list(request):
     roads = Road.objects.all()
     return render(request, 'rzd/road_list.html', {'roads': roads})
 
-
-# отображение на основе предопределенного класса
-class RoadListViewDef(ListView):
-    model = Road
-    # template_name = 'rzd/road_list.html' #default: <app-name>rzd/<model-name>_list.html = rzd/goroga_list.html
-    template_name = 'rzd/def_listview.html'
-    # context_object_name = 'roads' #название ключа, по которому запись передается внутрь шаблона, default: object_list
-    extra_context = {'title': 'Дороги', 'url_add': '/rzd/road/add', 'url_add_name': 'Добавить дорогу', 'url_edit': '/rzd/road/edit', 'url_edit_name': 'Редактировать дорогу'}
-    queryset = Road.objects.all().order_by('kod')
-
-
-class RoadListView(ListView):
-    #model = Road
-    # template_name = 'rzd/road_list.html' #default: <app-name>rzd/<model-name>_list.html = rzd/goroga_list.html
-    # context_object_name = 'roads'  # название ключа, по которому запись передается внутрь шаблона, default: object_list
-    queryset = Road.objects.all().order_by('kod')
-
-
-class RoadListView(ListView):
-    model = Road
-    # template_name = 'rzd/road_list.html' #default: <app-name>rzd/<model-name>_list.html = rzd/goroga_list.html
-    context_object_name = 'roads'  # название ключа, по которому запись передается внутрь шаблона, default: object_list
-    queryset = Road.objects.all().order_by('kod')
-
-
 def road_add(request):
     error = ''
     if request.method == 'POST':  # нажата кнопка Добавить
@@ -78,6 +53,38 @@ def road_add(request):
     }
     return render(request, 'rzd/road_create.html', data)
 
+
+
+
+# отображение на основе предопределенного класса
+class RoadListView(ListView):
+    model = Road
+    # template_name = 'rzd/road_list.html' #default: <app-name>rzd/<model-name>_list.html = rzd/goroga_list.html
+    template_name = 'rzd/road_list.html'
+    # template_name = 'rzd/def_listview.html'
+    context_object_name = 'roads'  # название ключа, по которому запись передается внутрь шаблона, default: object_list
+    extra_context = {'title': 'Дороги', 'url_add': '/rzd/road/add', 'url_add_name': 'Добавить дорогу',
+                     'url_edit': '/rzd/road/edit', 'url_edit_name': 'Редактировать дорогу'}
+    queryset = Road.objects.all().order_by('kod')
+
+class RoadTableView(SingleTableView):
+    model = Road
+    table = RoadTable
+    context_object_name = 'roads'
+    template_name = 'rzd/road_table.html'
+    queryset = Road.objects.all().order_by('kod')
+
+class RoadCreateView(CreateView):
+    model = Road
+    template_name = 'rzd/road_create.html'
+    form_class = RoadForm
+    success_url = 'road_list/'
+'''
+    def get_context_data(self, **kwargs):
+    	context = super().get_context_data(**kwargs)
+	    context[’roads’] = Road.objects.all()
+	    return context
+'''
 
 class RoadDetailView(DetailView):
     model = Road
@@ -210,13 +217,3 @@ def station_add(request):
     return render(request, 'rzd/station_create.html', data)
 
 
-'''
-class RoadCreateView(CreateView):
-    template_name = 'road_create.html'
-    form_class = Road
-    success_url = '/station/'
-    def get_context_data(self, **kwargs):
-	context = super().get_context_data(**kwargs)
-	context[’roads’] = Road.objects.all()
-	return context
-'''

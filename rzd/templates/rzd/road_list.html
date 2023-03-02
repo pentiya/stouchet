@@ -1,18 +1,22 @@
+{# rzd/templates/road_list.html #}
 {% extends "web/base.html" %}
-
 {% block title %}{{title}}{% endblock %}
-
 {% block content %}
+<div class="features">
     <h1>{{title}}</h1>
     {% if roads %}
-      {% for road in roads %}
-        <div class="alert alert-warning">
-          <h3><a href="{% url 'road_view' road.id %}">{{ road }} ({{ road.short_name }})</a></h3>
-        </div>
-      {% endfor %}
+    <table width="100%">
+        {% for road in roads %}
+        <tr>
+            <td class="features"><a href="{% url 'road_detail' road.id %}">{{ road }} ({{ road.short_name }})</a></td>
+        </tr>
+        {% endfor %}
+    </table>
     {% else %}
-      <p>Нет записей</p>
+    <p>Нет записей</p>
     {% endif %}
-    <a href="{% url 'road_add' %}"><button class="btn btn-info">Добавить дорогу</button></a>
-  {% endblock %}
-
+    <a href="{% url 'road_add' %}">
+        <button class="btn btn-info">Добавить дорогу</button>
+    </a>
+    {% endblock %}
+</div>

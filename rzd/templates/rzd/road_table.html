@@ -1,0 +1,10 @@
+{# rzd/templates/road_table.html #}
+{% extends "web/web-base.html" %}
+{% load render_table from django_tables2 %}
+{#% load static %#}
+{% block title %}{{ title }}{% endblock %}
+<!--link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" /-->
+{% block content %}
+<h3>{{ title }}</h3>
+{% render_table object_list %}
+{% endblock %}
